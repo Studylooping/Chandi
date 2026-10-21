@@ -90,7 +90,7 @@ VRTTA = {
     'vaMshastha': ('LGLGGLLGLGLG', ()),
     'indravaMshA': ('GGLGGLLGLGLG', ()),
     'dodhaka': ('GLLGLLGLLGG', ()),
-    'vasantatilakA': ('GGLGLLLGLLGLGG', (8,)),
+    'vasantatilakA': ('GGLGLLLGLLGLGG', ()),  # no fixed yati in the standard definition
     'shArdUlavikrIDita': ('GGGLLGLGLLLGGGLGGLG', (12,)),
     'sragdharA': ('GGGGLGGLLLLLLGGLGGLGG', (7, 14)),
     # ardhasama: odd / even padas
