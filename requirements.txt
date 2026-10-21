@@ -1,2 +1,10 @@
 indic_transliteration==2.3.82
 pytest
+# audio
+torch==2.6.0
+torchaudio==2.6.0
+transformers==4.46.1
+pylibrb==0.1.2
+soundfile
+numpy
+parler-tts @ git+https://github.com/huggingface/parler-tts.git

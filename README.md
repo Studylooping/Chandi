@@ -11,7 +11,18 @@ laghu = 1 mātrā, guru = 2 mātrās, yati and pāda pauses per metre.
 2. `python -m chandi.analyze` scans every verse (laghu/guru) and identifies its metre. Irregular
    verses are listed and each one is reviewed against the Gita Press scan (`REVIEWED` in
    `chandi/analyze.py`); source errors found this way are fixed in `CORRECTIONS` in `chandi/corpus.py`.
-3. Audio (in progress): `chandi/audio/`.
+3. `python -m chandi.audio.recite --section ch1 [--ids 1.1-1.10] [--u 0.2]` renders audio plus a
+   per-pada compliance report (`out/*.json`). For every pada:
+   - synthesise (Indic Parler-TTS, male voice "Aryan"; needs a Hugging Face token, the model is gated);
+   - force-align syllables (torchaudio MMS_FA) and measure each syllable as the interval from its
+     vowel onset to the next one;
+   - time-stretch (Rubber Band R3, formant-preserving) so laghu = 1 u and guru = 2 u exactly, the
+     pada-final syllable held as guru;
+   - re-align the result and **verify**: the measured pattern must equal the metre's laghu/guru
+     pattern and every syllable must be within ±20% of its target; otherwise refine / re-synthesise,
+     and report the pada as non-compliant if it still fails.
+   Pauses: yati 1 u (only where it falls on a word boundary), pada 2 u, half-verse 3 u, verse 5 u.
+   uvāca lines and other prose are read naturally at the same tempo.
 
 ## Source text
 sanskritdocuments.org `durga700.itx` (follows Gita Press numbering). Its terms do not allow
