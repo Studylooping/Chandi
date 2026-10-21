@@ -8,5 +8,17 @@ failed after retries are named. The check covers rhythm only, not pronunciation.
 
 | File | Length | Pādas compliant | Worst syllable error | Non-compliant pādas |
 |---|---|---|---|---|
+| [00_Chandika-dhyana.mp3](00_Chandika-dhyana.mp3) | 1.0 min | 14/14 | 16% | — |
+| [01_Devi-kavacha.mp3](01_Devi-kavacha.mp3) | 14.5 min | 244/244 | 20% | — |
+| [04_Adhyaya-01.mp3](04_Adhyaya-01.mp3) | 19.2 min | 319/319 | 20% | — |
+| [05_Adhyaya-02.mp3](05_Adhyaya-02.mp3) | 16.2 min | 281/281 | 20% | — |
+| [07_Adhyaya-04.mp3](07_Adhyaya-04.mp3) | 11.2 min | 154/154 | 20% | — |
+| [10_Adhyaya-07.mp3](10_Adhyaya-07.mp3) | 6.3 min | 111/111 | 20% | — |
+| [11_Adhyaya-08.mp3](11_Adhyaya-08.mp3) | 14.2 min | 250/250 | 20% | — |
 | [12_Adhyaya-09.mp3](12_Adhyaya-09.mp3) | 9.3 min | 160/160 | 20% | — |
+| [14_Adhyaya-11.mp3](14_Adhyaya-11.mp3) | 12.5 min | 206/206 | 20% | — |
+| [15_Adhyaya-12.mp3](15_Adhyaya-12.mp3) | 9.2 min | 157/157 | 20% | — |
+| [16_Adhyaya-13.mp3](16_Adhyaya-13.mp3) | 4.7 min | 78/78 | 20% | — |
 | [17_Pradhanika-rahasya.mp3](17_Pradhanika-rahasya.mp3) | 7.1 min | 116/116 | 20% | — |
+| [18_Vaikritika-rahasya.mp3](18_Vaikritika-rahasya.mp3) | 8.8 min | 156/156 | 20% | — |
+| [19_Murti-rahasya.mp3](19_Murti-rahasya.mp3) | 5.0 min | 88/88 | 20% | — |
