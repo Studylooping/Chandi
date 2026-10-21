@@ -10,8 +10,10 @@ failed after retries are named. The check covers rhythm only, not pronunciation.
 |---|---|---|---|---|
 | [00_Chandika-dhyana.mp3](00_Chandika-dhyana.mp3) | 1.0 min | 14/14 | 16% | — |
 | [01_Devi-kavacha.mp3](01_Devi-kavacha.mp3) | 14.5 min | 244/244 | 20% | — |
+| [02_Argala-stotra.mp3](02_Argala-stotra.mp3) | 6.6 min | 108/108 | 20% | — |
 | [04_Adhyaya-01.mp3](04_Adhyaya-01.mp3) | 19.2 min | 319/319 | 20% | — |
 | [05_Adhyaya-02.mp3](05_Adhyaya-02.mp3) | 16.2 min | 281/281 | 20% | — |
+| [06_Adhyaya-03.mp3](06_Adhyaya-03.mp3) | 9.8 min | 170/170 | 20% | — |
 | [07_Adhyaya-04.mp3](07_Adhyaya-04.mp3) | 11.2 min | 154/154 | 20% | — |
 | [10_Adhyaya-07.mp3](10_Adhyaya-07.mp3) | 6.3 min | 111/111 | 20% | — |
 | [11_Adhyaya-08.mp3](11_Adhyaya-08.mp3) | 14.2 min | 250/250 | 20% | — |
@@ -22,3 +24,4 @@ failed after retries are named. The check covers rhythm only, not pronunciation.
 | [17_Pradhanika-rahasya.mp3](17_Pradhanika-rahasya.mp3) | 7.1 min | 116/116 | 20% | — |
 | [18_Vaikritika-rahasya.mp3](18_Vaikritika-rahasya.mp3) | 8.8 min | 156/156 | 20% | — |
 | [19_Murti-rahasya.mp3](19_Murti-rahasya.mp3) | 5.0 min | 88/88 | 20% | — |
+| [20_Aparadha-kshamapana.mp3](20_Aparadha-kshamapana.mp3) | 2.4 min | 41/41 | 20% | — |
