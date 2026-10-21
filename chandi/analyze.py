@@ -6,7 +6,7 @@ import pathlib
 from chandi.prosody import identify
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-METRICAL = {'shloka', 'half', 'tripada', 'verse', 'dhyana', 'refrain'}
+METRICAL = {'shloka', 'half', 'tripada', 'gayatri', 'verse', 'dhyana', 'refrain'}
 
 
 # Irregular verses reviewed by hand. "GP" = the reading is identical in the Gita Press scan,

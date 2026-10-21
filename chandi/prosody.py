@@ -201,6 +201,10 @@ def identify(lines):
     padas = [p for p in split_padas(lines) if p]
     ws = [weights(p) for p in padas]
     lens = [len(w) for w in ws]
+    if lens == [8, 8, 8]:  # tripadA gAyatrI (Ch.5 yA devI mantras): syllable count only
+        res['metre'] = 'gAyatrI'
+        res['padas'] = [(p, w, 'gAyatrI') for p, w in zip(padas, ws)]
+        return res
     if lens and all(n in (8, 9) for n in lens):
         labels = []
         for i, w in enumerate(ws):

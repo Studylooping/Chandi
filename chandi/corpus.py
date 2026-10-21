@@ -195,7 +195,30 @@ def build():
         body = path.read_text(encoding="utf-8").split("\\begin{document}", 1)[1]
         units, _ = parse_section(key, body)
         corpus.extend(units)
+    if TRIPADA_MODE == "katyayani":
+        corpus = [x for u in corpus for x in (expand_tripada(u) if u["kind"] == "tripada" else [u])]
     return corpus, tallies
+
+
+# Ch.5 "yA devI" verses (5.14-5.80): Gita Press prints each as one verse with a triple
+# "namastasyai" and counts it as three mantras. The Guptavatī (on Kātyāyanī Tantra paṭala 22,
+# vol. 2 p. 140 of the seven-commentary edition) gives the reading behind that count:
+#   "मन्त्रात्पूर्वोत्तरौ शेषौ 'या देव्य'र्धं 'नमोनमः' । तेषामाद्यन्तयोर्योज्यौ प्रतिमन्त्रं क्रमेण तु ।
+#    … 'या देवी'त्यर्धमुच्चार्य 'नमस्तस्यै नमोनमः' । इत्युच्चरेत्त्रिपाद्गायत्र्येषा"
+# i.e. each mantra = the "yA devI" half + "namastasyai" + "namo namaH": a 3x8 Gayatri.
+TRIPADA_MODE = "katyayani"  # or "printed" (Gita Press layout)
+
+
+def expand_tripada(u):
+    a, _, rest = u["id"].partition(".")
+    lo = int(rest.partition("-")[0])
+    first_it, first_dv = u["itrans"][0], u["lines"][0]
+    out = []
+    for k in range(3):
+        last_it = "namastasyai namo namaH ||"
+        out.append(dict(u, kind="gayatri", id=f"{a}.{lo + k}", count=1,
+                        itrans=[first_it, last_it], lines=[first_dv, to_deva(last_it)]))
+    return out
 
 
 def validate(corpus, tallies):
@@ -218,7 +241,8 @@ def validate(corpus, tallies):
     kinds = {}
     for u in corpus:
         if u["section"].startswith("ch") and u["id"]:
-            kinds[u["kind"]] = kinds.get(u["kind"], 0) + u["count"]
+            kind = "tripada" if u["kind"] == "gayatri" else u["kind"]
+            kinds[kind] = kinds.get(kind, 0) + u["count"]
     return problems, kinds, running
 
 

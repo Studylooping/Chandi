@@ -31,3 +31,8 @@ def test_om_is_extrametrical():
     r = identify(['ॐ खड्गं चक्रगदेषुचापपरिघाञ्छूलं भुशुण्डीं शिरः', 'शङ्खं सन्दधतीं करैस्त्रिनयनां सर्वाङ्गभूषावृताम् ।',
                   'नीलाश्मद्युतिमास्यपाददशकां सेवे महाकालिकां', 'यामस्तौत्स्वपिते हरौ कमलजो हन्तुं मधुं कैटभम् ॥'])
     assert r['extra'] == 'ॐ' and r['metre'] == 'shArdUlavikrIDita' and not r['issues']
+
+
+def test_tripada_gayatri():
+    r = identify(['या देवी सर्वभूतेषु विष्णुमायेति शब्दिता ।', 'नमस्तस्यै नमो नमः ॥'])
+    assert r['metre'] == 'gAyatrI' and [len(w) for _, w, _ in r['padas']] == [8, 8, 8]

@@ -20,7 +20,7 @@ from chandi.prosody import syllables
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 BIJA = {'OM': 'ॐ', 'OM aiM': 'ॐ ऐं', 'OM hrIM': 'ॐ ह्रीं', 'OM klIM': 'ॐ क्लीं', 'klIM OM': 'क्लीं ॐ'}
-METRICAL = {'shloka', 'half', 'tripada', 'verse', 'dhyana', 'refrain'}
+METRICAL = {'shloka', 'half', 'tripada', 'gayatri', 'verse', 'dhyana', 'refrain'}
 
 
 def prose(engine, text, u):
