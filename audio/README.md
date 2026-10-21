@@ -16,6 +16,7 @@ failed after retries are named. The check covers rhythm only, not pronunciation.
 | [05_Adhyaya-02.mp3](05_Adhyaya-02.mp3) | 16.2 min | 281/281 | 20% | — |
 | [06_Adhyaya-03.mp3](06_Adhyaya-03.mp3) | 9.8 min | 170/170 | 20% | — |
 | [07_Adhyaya-04.mp3](07_Adhyaya-04.mp3) | 11.2 min | 154/154 | 20% | — |
+| [08_Adhyaya-05.mp3](08_Adhyaya-05.mp3) | 25.7 min | 420/420 | 20% | — |
 | [09_Adhyaya-06.mp3](09_Adhyaya-06.mp3) | 5.1 min | 87/87 | 20% | — |
 | [10_Adhyaya-07.mp3](10_Adhyaya-07.mp3) | 6.3 min | 111/111 | 20% | — |
 | [11_Adhyaya-08.mp3](11_Adhyaya-08.mp3) | 14.2 min | 250/250 | 20% | — |
