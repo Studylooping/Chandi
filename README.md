@@ -25,7 +25,9 @@ laghu = 1 mātrā, guru = 2 mātrās, yati and pāda pauses per metre.
    uvāca lines and other prose are read naturally at the same tempo.
 
 ## Source text
-sanskritdocuments.org `durga700.itx` (follows Gita Press numbering). Its terms do not allow
+sanskritdocuments.org `durga700.itx` (follows Gita Press numbering), plus the Rahasya-traya
+(`prAdhAnikarahasyam`, `vaikRitikarahasyam`, `mUrtirahasyam`, Bṛhatstotraratnākara). Readings that
+break the metre were checked against the Gita Press edition and corrected (`CORRECTIONS`). Its terms do not allow
 reposting, so the text is **not** stored in this repository; it is downloaded into `data/`.
 
 ## Metres found (excluding the uvāca prose lines)
@@ -47,6 +49,11 @@ reposting, so the text is **not** stored in this repository; it is downloaded in
   Edition: *Durgāsaptaśatī with seven commentaries* (Guptavatī, Nāgojībhaṭṭī, Śāntanavī, …),
   https://archive.org/details/saptashati-7-teeka-1 (vol. 1; quotes are from its OCR, lightly normalised).
 - The Ṛgvedic Devīsūkta needs Vedic svaras, which the source does not mark; it is not recited by this pipeline.
+
+## Rendering in parallel
+`scripts/setup_render.sh` prepares a CPU environment (needs `HF_TOKEN`); then
+`scripts/render_sections.sh ch2 ch13 …` renders those sections and pushes each finished one to
+`audio/` (mp3 + `audio/reports/<section>.json`). Several sessions can run on disjoint sections.
 
 ## Tests
 `python -m pytest tests`

@@ -10,7 +10,7 @@ import re
 
 from indic_transliteration import sanscript
 
-from chandi.fetch import fetch
+from chandi.fetch import fetch, fetch_rahasya
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SECTION_RE = re.compile(r"\\section\{\|\|\s*(.*?)\s*\|\|\}")
@@ -18,6 +18,7 @@ NUM_RE = re.compile(r"\|\|\s*(\d+)(?:\\\.(\d+))?(?:\\-(\d+))?\s*\|\|\s*$")
 TALLY_RE = re.compile(r"evamAditaH\s*\|\|\s*(\d+)\s*\|\|")
 BIJA_HEAD_RE = re.compile(r"^OM(?:\s+(?:aiM|hrIM|klIM))?\s+")
 BIJA_TAIL_RE = re.compile(r"\|\|\s*((?:aiM|hrIM|klIM)\s+OM)\s*\|\|\s*$")
+STANDALONE_RE = re.compile(r"(namaH|kAyai|uvAcha|ovAcha|UchuH)\s*\|\|$")
 UVACA_RE = re.compile(r"(uvAcha|ovAcha|UchuH)\s*$")  # ovAcha: rAjovAcha, brahmovAcha
 
 # Source-text fixes, each verified against the Gita Press edition (archive.org scan,
@@ -25,6 +26,10 @@ UVACA_RE = re.compile(r"(uvAcha|ovAcha|UchuH)\s*$")  # ovAcha: rAjovAcha, brahmo
 CORRECTIONS = [
     ("ch12", "dhyana", "vilasadhastA", "vilasaddhastA"),  # GP: करवालखेटविलसद्धस्ताभिरासेविताम्
     ("ch8", "dhyana", "bANAchApa", "bANachApa"),  # GP: धृतपाशाङ्कुशबाणचापहस्ताम्
+    ("pradhanika", "6", "taptak~nchana", "taptakA~nchana"),  # GP: तप्तकाञ्चनभूषणा
+    ("pradhanika", "13", "guNeneduprabhraM", "guNenenduprabhaM"),  # GP: गुणेनेन्दुप्रभं दधौ
+    ("vaikritika", "5", "shUlasha~NkhachakrabhushuDibhR^it", "shUlachakrasha~NkhabhushuNDibhR^it"),  # GP: …शूलचक्रशङ्खभुशुण्डिभृत्
+    ("murti", "20", "chaDikAyAH", "chaNDikAyAH"),  # GP: जगन्मातुश्चण्डिकायाः
 ]
 PEEL_RE = re.compile(r"^(?:OM\s+)?(namashchaNDikAyai|[^|]*(?:uvAcha|ovAcha|UchuH))\s*\|$")
 
@@ -105,6 +110,8 @@ def parse_section(key, block):
         buf = []
 
     for ln in clean_lines(block):
+        if ln.startswith("iti shrImArkaNDeya"):  # Rahasya colophon: the rest is credits
+            mode = "end"
         if ln == "":
             if mode == "dhyana" and buf:
                 flush("dhyana"); mode = None
@@ -168,8 +175,9 @@ def parse_section(key, block):
         elif bt:
             buf[-1] = BIJA_TAIL_RE.sub("||", ln)
             flush("refrain", None, 0, None, bt.group(1))
-        elif ln.endswith("||") and mode != "dhyana" and len(buf) == 1:
-            flush("invocation")  # e.g. "OM namashchaNDikAyai ||"
+        elif ln.endswith("||") and mode != "dhyana" and len(buf) == 1 and STANDALONE_RE.search(ln):
+            # "OM namashchaNDikAyai ||", "rAjovAcha ||"; any other unnumbered "||" is a mid-verse typo
+            flush("uvaca" if UVACA_RE.search(ln.rstrip("| ")) else "invocation")
     if buf:
         flush("prose")
     return units, tallies
@@ -183,6 +191,10 @@ def build():
         corpus.extend(units)
         if t:
             tallies[key] = t
+    for key, path in fetch_rahasya().items():
+        body = path.read_text(encoding="utf-8").split("\\begin{document}", 1)[1]
+        units, _ = parse_section(key, body)
+        corpus.extend(units)
     return corpus, tallies
 
 
