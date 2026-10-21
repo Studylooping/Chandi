@@ -21,7 +21,9 @@ def _get(url, dest, sha, force=False):
         data = dest.read_bytes()
     else:
         dest.parent.mkdir(parents=True, exist_ok=True)
-        with urllib.request.urlopen(url) as r:
+        # the site answers 406 to Python's default User-Agent
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (chandi-fetch)"})
+        with urllib.request.urlopen(req) as r:
             data = r.read()
         dest.write_bytes(data)
     digest = hashlib.sha256(data).hexdigest()
