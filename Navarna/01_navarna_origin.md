@@ -154,10 +154,10 @@ So the verse's **source**, as far as these two commentators let us see, is the �
 
 These are the Navārṇa ṛṣyādi triads distributed one per caritra. The Ḍāmara verse's "फलं वेदत्रयोद्भवम्" corresponds to the Ṛg/Yajur/Sāma *svarūpa*.
 
-**[COMMENTARY] Nāgojībhaṭṭa rejects this distribution.** DSS7 Vol. 1, p. 68, PDF 49 (end of his prayoga-vidhi). He quotes, as "said somewhere under the name of the Brahmāṇḍa Purāṇa" (ब्रह्माण्डपुराणनाम्ना … क्वचिदुक्ता), the per-chapter verse counts and then the caritra viniyogas with the same values: Brahmā/Mahākālī/Nandā/Raktadantikā/Agni; Viṣṇu/Mahālakṣmī/Śākambharī/Durgā/Uṣṇik/Vāyu; Śiva/Mahāsarasvatī/Anuṣṭubh-Jagatī/Bhīmā/Bhrāmarī/Sūrya. Then he says:
+**[COMMENTARY] Nāgojībhaṭṭa rejects a variant of this distribution.** DSS7 Vol. 1, p. 68, PDF 49 (end of his prayoga-vidhi; page image checked). He quotes, as "said somewhere under the name of the Brahmāṇḍa Purāṇa" (ब्रह्माण्डपुराणनाम्ना … क्वचिदुक्ता), per-chapter verse counts, the ṛṣyādi of the Kavaca and Argalā, and then caritra viniyogas that **differ from the Gita Press set in the chandas**: "प्रथमचरित्रस्य ब्रह्मा ऋषिः । अनुष्टुप् छन्दः । महाकाली देवता । नन्दा शक्तिः । रक्तदन्तिका बीजम् । अग्निस्तत्त्वम् । पौष्टिके विनियोगः"; Viṣṇu/Mahālakṣmī/Śākambharī/Durgā/Uṣṇik/Vāyu ("ईप्सितप्राप्त्यर्थे"); Śiva/Mahāsarasvatī/"छन्दावनुष्टुब्जगत्यौ"/Bhīmā/Bhrāmarī/Sūrya ("उच्चाटनादौ"). Then he says:
 > तत्तु कात्यायनीतन्त्रोक्तमन्त्रविभागेन विरोधात् निर्मूलमिति ध्येयम् ।
 
-"But that should be regarded as baseless, because it conflicts with the mantra-division taught in the Kātyāyanī Tantra."
+"But that should be regarded as baseless, because it conflicts with the mantra-division taught in the Kātyāyanī Tantra." The conflict he names is with the Kātyāyanī *mantra division* (most plausibly the verse counts quoted with it); he does not say this about the Gita Press viniyoga, whose first-caritra chandas (Gāyatrī) differs from the rejected variant (Anuṣṭubh).
 
 **Other ṛṣyādi he records (p. 66, PDF 47):**
 - For the caritras: Mārkaṇḍeya / Sumedhā / Śiva as ṛṣis; Anuṣṭubh / Anuṣṭubh / Anuṣṭubh-Jagatī as chandas; बीजs सौः / ह्रीं / क्लीं. He adds "ऐंमिति बीजमाद्यचरितस्येत्यन्यत्र" (elsewhere ऐं is the bīja of the first caritra). He sends the reader to the Kātyāyanī Tantra for their roots: "एतेषां मूलानि कात्यायनीतन्त्रे द्रष्टव्यानि".
