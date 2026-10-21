@@ -25,7 +25,12 @@ METRICAL = {'shloka', 'half', 'tripada', 'gayatri', 'verse', 'dhyana', 'refrain'
 
 def prose(engine, text, u):
     """Natural reading of an unmetred line, scaled so the mean syllable lasts 1.5 u."""
-    raw = engine.synth(text, 0)
+    for seed in range(5):  # a take can come back empty (seen for "दूत उवाच", seed 0); try another seed
+        raw = engine.synth(text, seed)
+        if len(raw) >= 0.3 * engine.sr:
+            break
+    else:
+        raise RuntimeError(f'{text}: no usable take in 5 seeds')
     a, b = active_region(raw, engine.sr)
     raw = raw[int(a * engine.sr): int(b * engine.sr) + int(0.05 * engine.sr)]
     n = max(len(syllables(text)), 1)
