@@ -34,8 +34,18 @@ reposting, so the text is **not** stored in this repository; it is downloaded in
   11.29–11.33 Upajāti (Indravajrā/Upendravajrā), 11.34 Vasantatilakā.
 - Dhyāna ślokas: Śārdūlavikrīḍita (1, 2, 3, 5, 6, 12), Sragdharā (4, 7), Aupacchandasika (8),
   Vasantatilakā (9, 10), Dodhaka (11), Anuṣṭubh (13).
-- The viniyoga "chandas" (Gāyatrī / Uṣṇik / Anuṣṭubh per caritra) is a ritual assignment, not the
-  metre of the verses.
+- The viniyoga names Gāyatrī / Uṣṇik / Anuṣṭubh for the three caritras. These do not describe the
+  verses' syllable structure (no 3×8 or 8+8+12 verses occur in Ch.1–4; Ch.5–13 also contain
+  non-Anuṣṭubh metres). Source of the assignment: Bhāskararāya's *Guptavatī* (prayoga-vidhi) quotes
+  the ṛṣyādi of the **Navārṇa mantra** — "नवाक्षरस्य ऋषयो ब्रह्मविष्णुमहेश्वराः । छन्दांस्युक्तानि
+  मुनिभिर्गायत्र्युष्णिगनुष्टुभः ॥ … नन्दाशाकम्भरीभीमाः शक्तयो … रक्तदन्तिकादुर्गाभ्रामर्यो बीजसन्ततिः ।
+  अग्निर्वायुः सूर्यस्तत्त्वं फलं वेदत्रयोद्भवम्" — exactly the ṛṣi/chandas/devatā/śakti/bīja/tattva/veda
+  triads that the three caritra viniyogas distribute, one per caritra (with bījas ऐं/ह्रीं/क्लीं before
+  1.1/2.1/5.1). Other tantras quoted in the same edition assign different chandas to the same verses
+  (Ḍāmara: Gāyatrī/Uṣṇik/**Triṣṭubh**; another: the whole Saptaśatī as one mālā-mantra in Gāyatrī),
+  which confirms the assignment is a mantra attribute for nyāsa, not the verse metre.
+  Edition: *Durgāsaptaśatī with seven commentaries* (Guptavatī, Nāgojībhaṭṭī, Śāntanavī, …),
+  https://archive.org/details/saptashati-7-teeka-1 (vol. 1; quotes are from its OCR, lightly normalised).
 - The Ṛgvedic Devīsūkta needs Vedic svaras, which the source does not mark; it is not recited by this pipeline.
 
 ## Tests
