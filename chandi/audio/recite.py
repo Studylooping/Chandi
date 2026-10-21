@@ -90,9 +90,21 @@ def main():
     units = select(corpus, a.section, a.ids)
     out = pathlib.Path(a.out or ROOT / 'out' / f'{a.section}{"_" + a.ids if a.ids else ""}_{engine.name}.wav')
     out.parent.mkdir(parents=True, exist_ok=True)
+    cache = ROOT / 'out' / 'units' / f'{engine.name}_u{a.u}' / a.section
+    cache.mkdir(parents=True, exist_ok=True)
     audio, report = [], []
+    section_units = [x for x in corpus if x['section'] == a.section]
     for unit in units:
-        w, r = recite_unit(engine, unit, a.u)
+        # per-unit cache (keyed by position in the full section) so an interrupted run resumes
+        k = next(i for i, x in enumerate(section_units) if x is unit)
+        stem = cache / f"{k:04d}_{(unit['id'] or unit['kind']).replace('.', '-')}"
+        if stem.with_suffix('.wav').exists() and stem.with_suffix('.json').exists():
+            w, _ = sf.read(stem.with_suffix('.wav'), dtype='float32')
+            r = json.loads(stem.with_suffix('.json').read_text(encoding='utf-8'))
+        else:
+            w, r = recite_unit(engine, unit, a.u)
+            sf.write(stem.with_suffix('.wav'), w, engine.sr)
+            stem.with_suffix('.json').write_text(json.dumps(r, ensure_ascii=False), encoding='utf-8')
         audio.append(w); report += r
         bad = [x for x in r if not x['ok']]
         print(f"{unit['section']} {unit['id'] or unit['kind']}: {len(r) - len(bad)}/{len(r)} padas compliant", flush=True)

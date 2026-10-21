@@ -39,7 +39,7 @@ class MMSEngine:
     def synth(self, text, seed=0):
         torch.manual_seed(seed)
         with torch.inference_mode():
-            out = self.model(**self.tok(text, return_tensors='pt')).waveform[0]
+            out = self.model(**self.tok(text.replace('ॐ', 'ओम्'), return_tensors='pt')).waveform[0]
         return out.numpy().astype(np.float32)
 
 
