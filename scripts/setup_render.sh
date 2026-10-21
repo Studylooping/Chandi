@@ -11,6 +11,16 @@ if [ ! -x "$VENV/bin/python" ]; then
   "$VENV/bin/pip" install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
   "$VENV/bin/pip" install -q indic_transliteration==2.3.82 pylibrb==0.1.2 soundfile pytest
 fi
+# aligner checkpoint (1.26 GB): resumable download with a size check (torch.hub would accept a truncated file)
+CK=$HOME/.cache/torch/hub/checkpoints/model.pt
+mkdir -p "$(dirname "$CK")"
+for i in 1 2 3 4 5; do
+  [ "$(stat -c %s "$CK" 2>/dev/null || echo 0)" = 1262047414 ] && break
+  curl -sS -C - -o "$CK" https://dl.fbaipublicfiles.com/mms/torchaudio/ctc_alignment_mling_uroman/model.pt || sleep 5
+done
+[ "$(stat -c %s "$CK")" = 1262047414 ] || { echo "aligner download incomplete"; exit 1; }
+# voice model (gated): fails here, not mid-render, if HF_TOKEN lacks access
+"$VENV/bin/python" -c "from chandi.audio.render import ParlerEngine; ParlerEngine(); print('voice model ok')"
 "$VENV/bin/python" -m chandi.corpus
 "$VENV/bin/python" -m chandi.analyze > /dev/null
 "$VENV/bin/python" -m pytest -q tests
