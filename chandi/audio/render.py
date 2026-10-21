@@ -133,17 +133,23 @@ class PhraseResult:
     seed: int
 
 
-def render_phrase(engine, text, weights, u, pada_final=True, seeds=(0, 1, 2), tol=0.2, refine=2):
+def render_phrase(engine, text, weights, u, pada_final=True, seeds=(0, 1, 2, 3, 4), tol=0.2, refine=2):
     """Render one phrase (pada or yati-segment) to exact mAtrA timing; verify by re-alignment."""
     sr = engine.sr
     matras = matras_for(weights, pada_final)
     best = None
+    errors = []
     for seed in seeds:
         raw = engine.synth(text, seed)
-        onsets, start, end, _ = align(torch.from_numpy(raw), sr, text)
+        # a bad take (near-empty clip, or one the aligner cannot fit) is discarded; try the next seed
+        if len(raw) < 0.25 * sr * len(matras) / 4:
+            errors.append(f'seed {seed}: clip of {len(raw) / sr:.2f}s'); continue
+        try:
+            onsets, start, end, _ = align(torch.from_numpy(raw), sr, text)
+        except RuntimeError as e:
+            errors.append(f'seed {seed}: {e}'); continue
         if len(onsets) != len(matras):
             raise ValueError(f'{text}: {len(onsets)} aligned syllables vs {len(matras)} in metre')
-        # keyframes: vowel onset i -> lead + sum(matras[:i]) * u ; speech end -> lead + total
         # anchors: vowel onset i -> lead + sum(matras[:i]) * u ; speech end -> lead + total
         a_in, a_out, t = [], [], onsets[0]
         for o, m in zip(onsets, matras):
@@ -163,6 +169,8 @@ def render_phrase(engine, text, weights, u, pada_final=True, seeds=(0, 1, 2), to
             return res
         if best is None or max(map(abs, errs)) < max(map(abs, best.errors)):
             best = res
+    if best is None:
+        raise RuntimeError(f'{text}: no usable take ({"; ".join(errors)})')
     return best
 
 

@@ -92,7 +92,7 @@ def main():
     out.parent.mkdir(parents=True, exist_ok=True)
     cache = ROOT / 'out' / 'units' / f'{engine.name}_u{a.u}' / a.section
     cache.mkdir(parents=True, exist_ok=True)
-    audio, report = [], []
+    audio, report, failed = [], [], []
     section_units = [x for x in corpus if x['section'] == a.section]
     for unit in units:
         # per-unit cache (keyed by position in the full section) so an interrupted run resumes
@@ -102,12 +102,20 @@ def main():
             w, _ = sf.read(stem.with_suffix('.wav'), dtype='float32')
             r = json.loads(stem.with_suffix('.json').read_text(encoding='utf-8'))
         else:
-            w, r = recite_unit(engine, unit, a.u)
+            try:
+                w, r = recite_unit(engine, unit, a.u)
+            except Exception as e:  # noqa: BLE001 - keep going; the unit is retried on the next run
+                failed.append(f"{unit['id'] or unit['kind']}: {e}")
+                print(f"FAILED {unit['section']} {unit['id'] or unit['kind']}: {e}", flush=True)
+                continue
             sf.write(stem.with_suffix('.wav'), w, engine.sr)
             stem.with_suffix('.json').write_text(json.dumps(r, ensure_ascii=False), encoding='utf-8')
         audio.append(w); report += r
         bad = [x for x in r if not x['ok']]
         print(f"{unit['section']} {unit['id'] or unit['kind']}: {len(r) - len(bad)}/{len(r)} padas compliant", flush=True)
+    if failed:  # an incomplete section is not written, so it is not published
+        print(f'{a.section}: {len(failed)} unit(s) failed, section not written; rerun to retry them')
+        raise SystemExit(1)
     sf.write(out, np.concatenate(audio), engine.sr)
     out.with_suffix('.json').write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding='utf-8')
     n_ok = sum(x['ok'] for x in report)
